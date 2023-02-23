@@ -2,13 +2,14 @@ import { Box, Card, Grid, GridItem } from '@chakra-ui/react'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
-import { data } from '../utils/data'
 
-export default function Product() {
+
+export default function Product({data}) {
+    
     return (
         <div>
             <Grid templateColumns={{base:'ifr',lg:'repeat(4,1fr)'}} gap={6}>
-            {data.products.map((product) => (
+            {data.map((product) => (
                 <GridItem key={product.id} colSpan={1}>
                     <Card>
                     <Link href={`/product/${product.id}`}>
