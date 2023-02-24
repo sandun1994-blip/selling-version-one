@@ -1,4 +1,5 @@
 import { Box, Button, Container, FormControl, FormHelperText, FormLabel, Heading, HStack, Input, Stack, Text, useBreakpointValue, useColorModeValue } from '@chakra-ui/react'
+import { signIn } from 'next-auth/react'
 import Link from 'next/link'
 import React, { useState } from 'react'
 import * as yup from 'yup'
@@ -31,7 +32,7 @@ try {
 } catch (error) {
     const validationErrors={}
 
-    if(err instanceof yup.ValidationError){
+    if(error instanceof yup.ValidationError){
         error.inner.forEach(({path,message})=>{
             validationErrors[path]=message
         })
@@ -42,7 +43,21 @@ try {
     return
 }
 
-        console.log('login', email);
+const result =signIn('credentials',{
+    email:email,
+    password:password,
+    callbackUrl:'/',
+        redirect:true
+})
+
+
+if (result.error) {
+
+    setError(result.error)
+    
+}
+
+        console.log('login', result);
         setEmail('')
         setPassword('')
 

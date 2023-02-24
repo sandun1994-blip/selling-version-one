@@ -2,6 +2,7 @@ import { Box, Button, Container, FormControl, FormHelperText, FormLabel, Heading
 import Link from 'next/link'
 import React, { useState } from 'react'
 import * as yup from 'yup'
+import {signIn} from 'next-auth/react'
 
 const signUpSchema=yup.object().shape({
     name:yup.string().required('Name is required'),
@@ -32,7 +33,7 @@ try {
 } catch (error) {
     const validationErrors={}
 
-    if(err instanceof yup.ValidationError){
+    if(error instanceof yup.ValidationError){
         error.inner.forEach(({path,message})=>{
             validationErrors[path]=message
         })
@@ -43,6 +44,33 @@ try {
     return
 }
 
+fetch('/api/auth/signup',{
+    method:'POST',
+    headers:{
+        'Content-Type':'application/json'
+    },
+    body:JSON.stringify({email,name,password})
+}).then(
+    response=>{
+        if (response.status ===201) {
+            signIn('credentials',{
+                email:email,
+                password:password,
+                callbackUrl:'/',
+                redirect:true
+            }).then((result)=>{
+                console.log(result);
+            }).catch(err=>{
+                setError({api:err.toString()})
+            })
+            console.log('user created successful');
+            
+        }else{
+            console.log('user creation faild');
+            setError({api:'Couldnt not create an acoount,please try again'})
+        }
+    }
+).catch(error=>console.log(error))
         console.log('login', email);
         setEmail('')
         setPassword('')

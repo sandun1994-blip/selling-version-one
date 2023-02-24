@@ -14,14 +14,22 @@
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@next/font": "13.1.6",
+    "@paypal/react-paypal-js": "^7.8.2",
+    "@reduxjs/toolkit": "^1.9.3",
+    "bcryptjs": "^2.4.3",
+    "crypto": "^1.0.1",
     "eslint": "8.34.0",
     "eslint-config-next": "13.1.6",
     "framer-motion": "^9.0.4",
+    "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.9.2",
     "next": "13.1.6",
+    "next-auth": "^4.19.2",
     "next-connect": "^1.0.0-next.3",
+    "next-redux-wrapper": "^8.1.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-redux": "^8.0.5",
     "yup": "^1.0.0"
   }
 }

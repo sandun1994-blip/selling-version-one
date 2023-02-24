@@ -5,18 +5,22 @@ import styles from '../styles/Home.module.css'
 import Layout from '../components/Layout'
 import Product from '../components/Products'
 import { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
 
 
+
   const [products,setProducts] =useState([])
   const [loading,setLoading] =useState(false)
   const [error,setError] =useState(false)
 
-  useEffect(()=>{
+  const store =useSelector((state=>state))
 
+  useEffect(()=>{
+console.log(store);
 fetchProducts()
   },[])
 

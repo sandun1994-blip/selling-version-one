@@ -13,7 +13,7 @@ export default function CartIcon() {
     const iconColor = { light: 'gray.600', dark: 'gray.300' }
     const fontColor = { light: 'gray.800', dark: 'gray.100' }
 
-console.log(cart);
+
     return (
         <Box position='relative'>
             <IconButton aria-label='cart' icon={<Text fontSize='2xl'></Text>} variant='ghost' color={iconColor[colorMode]} _hover={{ color: hoverColor[colorMode] }} />
