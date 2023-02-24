@@ -1,9 +1,9 @@
 // pages/api/hello.js
 
 import { createRouter} from "next-connect";
-import Product from "../../../models/Product";
-import { data } from "../../../utils/data";
-import db from "../../../utils/db";
+import Order from "../../models/Order";
+import db from "../../utils/db";
+
 ;
 
 
@@ -14,10 +14,10 @@ const router = createRouter();
 router
 .get(async(req, res) => {
     await db.connect()
-   const products = await Product.find({})
+   const orders = await Order.find({})
  
-    await db.disconnect()
-    res.send(products);
+     await db.disconnect()
+    res.send(orders);
   })
 
 // create a handler from router with custom

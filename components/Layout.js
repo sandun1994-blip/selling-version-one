@@ -24,7 +24,10 @@ export default function Layout({ children }) {
                         <Text fontFamily={'heading'} color={useColorModeValue('gray.800', 'white')}>lOGO</Text>
                     </Link>
 
-                    <Stack flex={{ base: 1 }} justify={'flex-end'} direction={'row'} spacing={6}>
+                    <Stack flex={{ base: 1,md:0 }} justify={'flex-end'} direction={'row'} spacing={6}>
+                        {
+                            (session && session.user.isAdmin)&&<Button as={'a'} href='/dashboard'>Dashboard</Button>
+                        }
                         <Button onClick={toggleColorMode}>{colorMode === 'light' ? <MoonIcon /> : <SunIcon />}</Button>
 
                         <Link href='/cart' >

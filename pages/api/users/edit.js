@@ -1,10 +1,10 @@
 // pages/api/hello.js
 
 import { createRouter} from "next-connect";
-import Product from "../../../models/Product";
-import { data } from "../../../utils/data";
+import User from "../../../models/User";
 import db from "../../../utils/db";
-;
+
+
 
 
 // Default Req and Res are IncomingMessage and ServerResponse
@@ -12,12 +12,23 @@ import db from "../../../utils/db";
 const router = createRouter();
 
 router
-.get(async(req, res) => {
+.post(async(req, res) => {
     await db.connect()
-   const products = await Product.find({})
- 
+    const {id,role} =req.body
+    const user = await User.findById(id)
+if (user && role ==='admin') {
+    user.isAdmin=true
+   
+    
+}
+await user.save()
+
+res.sendDate({message:'user updated'})
+
     await db.disconnect()
-    res.send(products);
+
+    
+    
   })
 
 // create a handler from router with custom

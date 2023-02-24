@@ -5,6 +5,7 @@ import OrderSummary from '../components/OrderSummary'
 import { CartContext } from '../context/CartContext'
 
 export default function   CartPage() {
+  
 
   const {cart} =useContext(CartContext)
 
